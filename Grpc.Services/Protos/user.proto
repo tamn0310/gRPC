@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+option csharp_namespace = "Grpc.Services.Protos";
+
+service UserService {
+  rpc GetAllAsync(EmptyRequest) returns (GetAllUserDto) {}
+  rpc GetByIdAsync (DetailUserQuery) returns (CountryReply) {}
+  rpc Create (CountryCreateRequest) returns (CountryReply) {}
+  rpc Update (CountryRequest) returns (CountryReply) {}
+  rpc Delete (DetailUserQuery) returns (EmptyReply) {}
+}
+message EmptyRequest {
+}
+
+message EmptyReply {
+}
+
+message DetailUserQuery {
+    int32 Id = 1;
+}
+
+message CountryCreateRequest {
+    string Name = 1;
+    string Description = 2;
+}
+
+message UserCommand {
+    int32 Id = 1;
+    string Name = 2;
+    string Description = 3;
+}
+
+message GetAllUserDto {
+    int32 Id = 1;
+    string Name = 2;
+    string Description = 3;
+}
+
+message CountriesReply {
+    repeated CountryReply Users = 1;
